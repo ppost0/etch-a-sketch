@@ -38,18 +38,22 @@
   function newGrid() {
     gridContainer.innerHTML = '';
     let length = prompt('Choose the number of squares per side of the grid (max. 100):', '50');
-    for (let i = 0; i < length; i++) {
-    const gridRow = document.createElement('div');
-    gridRow.classList.add('gridrow')
-    gridContainer.appendChild(gridRow);
-    for (let j = 0; j < length; j++) {
-      const cell = document.createElement('div');
-      cell.classList.add('cell');
-      // cell.textContent = 'cell'
-      cell.addEventListener('mouseover', (event) => event.target.style.background='black')
-      gridRow.appendChild(cell);
-    }
-  }
+    if (length > 100) {
+      newGrid();
+    } else {
+      for (let i = 0; i < length; i++) {
+      const gridRow = document.createElement('div');
+      gridRow.classList.add('gridrow')
+      gridContainer.appendChild(gridRow);
+      for (let j = 0; j < length; j++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        // cell.textContent = 'cell'
+        cell.addEventListener('mouseover', (event) => event.target.style.background='black')
+        gridRow.appendChild(cell);
+      }
+      }
+     }
   }
 
 </script>
