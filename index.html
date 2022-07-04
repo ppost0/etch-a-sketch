@@ -9,17 +9,18 @@
 </head>
 <body>
   <div class="gridcontainer"></div>
+
 <script>
   const gridContainer = document.querySelector('.gridcontainer');
 
   for (let i = 0; i < 16; i++) {
     const gridRow = document.createElement('div');
+    gridRow.classList.add('gridrow')
     gridContainer.appendChild(gridRow);
     for (let j = 0; j < 16; j++) {
       const cell = document.createElement('div');
-      cell.style.border = '1px solid black';
-      cell.style.width = '15px';
-      cell.style.height = '15px';
+      cell.classList.add('cell');
+      // cell.textContent = 'cell'
       cell.addEventListener('mouseover', (event) => event.target.style.background='black')
       gridRow.appendChild(cell);
     }

@@ -7,11 +7,28 @@ html {
   box-sizing: inherit;
 }
 
-.gridcontainer {
+body {
   display: flex;
   justify-content: center;
 }
 
-/* .gridcontainer div div:hover {
-  background-color: black;
-} */
+.gridcontainer {
+  display: flex;
+  width: 960px;
+  height: 960px;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.gridrow {
+  display: flex;
+  justify-content: stretch;
+  flex: 1 1 0;
+}
+
+.cell {
+  border: 1px solid black;
+  flex: 1 1 0;
+}
+
