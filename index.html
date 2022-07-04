@@ -10,53 +10,100 @@
 <body>
   <div class="buttonsrow">
     <button class="btn changegridbtn">Change grid</button>
+    <button class="btn blackbtn">Black Pen</button>
     <button class="btn rainbowbtn">Rainbow Pen</button>
   </div>
 
   <div class="gridcontainer"></div>
 
 <script>
-  const gridContainer = document.querySelector('.gridcontainer');
-  const changeGridBtn = document.querySelector('.changegridbtn');
+  document.addEventListener("DOMContentLoaded", theDomHasLoaded, false);
+
+  function theDomHasLoaded() {
+    const gridContainer = document.querySelector('.gridcontainer');
+    const changeGridBtn = document.querySelector('.changegridbtn');
+    const rainbowBtn = document.querySelector('.rainbowbtn');
+    const blackBtn = document.querySelector('.blackbtn')
+    let cells = document.querySelectorAll('.cell');
 
 
-  for (let i = 0; i < 16; i++) {
-    const gridRow = document.createElement('div');
-    gridRow.classList.add('gridrow')
-    gridContainer.appendChild(gridRow);
-    for (let j = 0; j < 16; j++) {
-      const cell = document.createElement('div');
-      cell.classList.add('cell');
-      // cell.textContent = 'cell'
-      cell.addEventListener('mouseover', (event) => event.target.style.background='black')
-      gridRow.appendChild(cell);
+    for (let i = 0; i < 16; i++) {
+      const gridRow = document.createElement('div');
+      gridRow.classList.add('gridrow')
+      gridContainer.appendChild(gridRow);
+      for (let j = 0; j < 16; j++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        // cell.textContent = 'cell'
+        cell.addEventListener('mouseover', colorSquareBlack)
+        gridRow.appendChild(cell);
+      }
     }
-  }
 
-  changeGridBtn.addEventListener('click', newGrid);
+    function colorSquareBlack(event) {
+      event.target.style.background='black';
+    }
 
+    function colorSquareRainbow(event) {
+      event.target.style.background=`rgb(${Math.floor(Math.random() * 255)},
+        ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+    }
 
-  function newGrid() {
-    let length = prompt('Choose the number of squares per side of the grid (max. 100):', '50');
-    if (length > 100 || isNaN(length)) {
-      newGrid();
-    } else if (length === null) {
-      return;
-    } else {
-      gridContainer.innerHTML = '';
-      for (let i = 0; i < length; i++) {
-        const gridRow = document.createElement('div');
-        gridRow.classList.add('gridrow')
-        gridContainer.appendChild(gridRow);
-        for (let j = 0; j < length; j++) {
-          const cell = document.createElement('div');
-          cell.classList.add('cell');
-          // cell.textContent = 'cell'
-          cell.addEventListener('mouseover', (event) => event.target.style.background='black')
-          gridRow.appendChild(cell);
+    function newGrid() {
+      let length = prompt('Choose the number of squares per side of the grid (max. 100):', '50');
+      if (length > 100 || isNaN(length)) {
+        newGrid();
+      } else if (length === null) {
+        return;
+      } else {
+        gridContainer.innerHTML = '';
+        for (let i = 0; i < length; i++) {
+          const gridRow = document.createElement('div');
+          gridRow.classList.add('gridrow')
+          gridContainer.appendChild(gridRow);
+          for (let j = 0; j < length; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            // cell.textContent = 'cell'
+            cell.addEventListener('mouseover', colorSquareBlack)
+            gridRow.appendChild(cell);
+          }
         }
       }
     }
+
+
+
+
+    // cells.forEach(cell=> {
+    //   cell.addEventListener('mouseover', colorSquareBlack)
+    // })
+
+
+    function useBlackPen() {
+      console.log('clicked black')
+      cells.forEach(cell => {
+        cell.addEventListener('mouseover', colorSquareBlack);
+      })
+    }
+
+
+    function useRainbowPen() {
+      cells = document.querySelectorAll('.cell')
+      console.log(cells.length);
+      cells.forEach(cell => {
+        cell.addEventListener('mouseover', colorSquareRainbow);
+      })
+    }
+
+
+
+
+
+
+    changeGridBtn.addEventListener('click', newGrid);
+    rainbowBtn.addEventListener('click', useRainbowPen)
+    blackBtn.addEventListener('click', useBlackPen)
   }
 
 </script>
