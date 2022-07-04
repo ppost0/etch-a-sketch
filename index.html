@@ -36,24 +36,26 @@
 
 
   function newGrid() {
-    gridContainer.innerHTML = '';
     let length = prompt('Choose the number of squares per side of the grid (max. 100):', '50');
-    if (length > 100) {
+    if (length > 100 || isNaN(length)) {
       newGrid();
+    } else if (length === null) {
+      return;
     } else {
+      gridContainer.innerHTML = '';
       for (let i = 0; i < length; i++) {
-      const gridRow = document.createElement('div');
-      gridRow.classList.add('gridrow')
-      gridContainer.appendChild(gridRow);
-      for (let j = 0; j < length; j++) {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        // cell.textContent = 'cell'
-        cell.addEventListener('mouseover', (event) => event.target.style.background='black')
-        gridRow.appendChild(cell);
+        const gridRow = document.createElement('div');
+        gridRow.classList.add('gridrow')
+        gridContainer.appendChild(gridRow);
+        for (let j = 0; j < length; j++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          // cell.textContent = 'cell'
+          cell.addEventListener('mouseover', (event) => event.target.style.background='black')
+          gridRow.appendChild(cell);
+        }
       }
-      }
-     }
+    }
   }
 
 </script>
