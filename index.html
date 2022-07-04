@@ -81,8 +81,10 @@
 
 
     function useBlackPen() {
-      console.log('clicked black')
+      cells = document.querySelectorAll('.cell')
+      console.log(cells.length);
       cells.forEach(cell => {
+        cell.removeEventListener('mouseover', colorSquareRainbow);
         cell.addEventListener('mouseover', colorSquareBlack);
       })
     }
@@ -92,11 +94,10 @@
       cells = document.querySelectorAll('.cell')
       console.log(cells.length);
       cells.forEach(cell => {
+        cell.removeEventListener('mouseover', colorSquareBlack);
         cell.addEventListener('mouseover', colorSquareRainbow);
       })
     }
-
-
 
 
 
