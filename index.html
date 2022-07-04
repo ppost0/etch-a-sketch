@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etch-a-Sketch</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="gridcontainer"></div>
+<script>
+  const gridContainer = document.querySelector('.gridcontainer');
+
+  for (let i = 0; i < 16; i++) {
+    const gridRow = document.createElement('div');
+    gridContainer.appendChild(gridRow);
+    for (let j = 0; j < 16; j++) {
+      const cell = document.createElement('div');
+      cell.style.border = '1px solid black';
+      cell.textContent = 'cell';
+      gridRow.appendChild(cell);
+    }
+  }
+</script>
+</body>
+</html>
