@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  border: 1px dashed gray;
+  /* border: 1px dashed gray; */
 }
 
 *, *:before, *:after {
