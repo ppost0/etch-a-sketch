@@ -1,3 +1,17 @@
+html {
+  box-sizing: border-box;
+  border: 1px dashed gray;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .gridcontainer {
   display: flex;
+  justify-content: center;
 }
+
+/* .gridcontainer div div:hover {
+  background-color: black;
+} */

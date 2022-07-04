@@ -18,10 +18,13 @@
     for (let j = 0; j < 16; j++) {
       const cell = document.createElement('div');
       cell.style.border = '1px solid black';
-      cell.textContent = 'cell';
+      cell.style.width = '15px';
+      cell.style.height = '15px';
+      cell.addEventListener('mouseover', (event) => event.target.style.background='black')
       gridRow.appendChild(cell);
     }
   }
+
 </script>
 </body>
 </html>
