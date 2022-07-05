@@ -18,7 +18,7 @@ body {
 }
 
 .btn {
-  /* background-color: #ffffff; */
+  background-color: #ffffff00;
   font-family: Montserrat, Tahoma, sans-serif;
   font-size: 15px;
   padding: 10px 20px;
@@ -50,6 +50,7 @@ body {
   -webkit-text-stroke: 1px goldenrod;
   margin-bottom: -85px;
   z-index: 1;
+  text-shadow:2px 2px black;
 }
 
 
@@ -66,7 +67,7 @@ body {
   border-bottom: 100px solid rgb(210, 87, 62);
   border-top: 100px solid rgb(210, 87, 62);
   border-radius: 30px;
-
+  outline: 2px solid rgba(0, 0, 0, 0.75);
 }
 
 .gridrow {
