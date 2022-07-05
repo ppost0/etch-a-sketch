@@ -11,7 +11,9 @@
   <div class="buttonsrow">
     <button class="btn changegridbtn">Change grid</button>
     <button class="btn blackbtn">Black Pen</button>
+    <button class="btn brushbtn" hidden>Soft Brush</button>
     <button class="btn rainbowbtn">Rainbow Pen</button>
+    <button class="btn resetbtn">Reset</button>
   </div>
 
   <div class="gridcontainer"></div>
@@ -23,7 +25,10 @@
     const gridContainer = document.querySelector('.gridcontainer');
     const changeGridBtn = document.querySelector('.changegridbtn');
     const rainbowBtn = document.querySelector('.rainbowbtn');
-    const blackBtn = document.querySelector('.blackbtn')
+    const blackBtn = document.querySelector('.blackbtn');
+    const resetBtn = document.querySelector('.resetbtn');
+    const brushBtn = document.querySelector('.brushbtn');
+
     let cells = document.querySelectorAll('.cell');
 
 
@@ -40,14 +45,25 @@
       }
     }
 
+
     function colorSquareBlack(event) {
       event.target.style.background='black';
     }
+
+    function colorWithBrush(event) {
+      console.log(event)
+      let alpha = 0
+      event.target.style.background='rgba(0,0,0,' + alpha++ + ')'
+    }
+
+
 
     function colorSquareRainbow(event) {
       event.target.style.background=`rgb(${Math.floor(Math.random() * 255)},
         ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
     }
+
+
 
     function newGrid() {
       let length = prompt('Choose the number of squares per side of the grid (max. 100):', '50');
@@ -74,15 +90,8 @@
 
 
 
-
-    // cells.forEach(cell=> {
-    //   cell.addEventListener('mouseover', colorSquareBlack)
-    // })
-
-
     function useBlackPen() {
-      cells = document.querySelectorAll('.cell')
-      console.log(cells.length);
+      cells = document.querySelectorAll('.cell');
       cells.forEach(cell => {
         cell.removeEventListener('mouseover', colorSquareRainbow);
         cell.addEventListener('mouseover', colorSquareBlack);
@@ -91,20 +100,38 @@
 
 
     function useRainbowPen() {
-      cells = document.querySelectorAll('.cell')
-      console.log(cells.length);
+      cells = document.querySelectorAll('.cell');
       cells.forEach(cell => {
         cell.removeEventListener('mouseover', colorSquareBlack);
         cell.addEventListener('mouseover', colorSquareRainbow);
       })
     }
 
+    function useBrush() {
+      cells = document.querySelectorAll('.cell');
+      cells.forEach(cell => {
+        cell.removeEventListener('mouseover', colorSquareBlack);
+        cell.removeEventListener('mouseover', colorSquareRainbow);
+        cell.addEventListener('mouseover', colorWithBrush);
+      })
+    }
+
+
+
+    function resetGrid() {
+      cells = document.querySelectorAll('.cell');
+      cells.forEach(cell => {
+        cell.style.background='white';
+      })
+    }
 
 
 
     changeGridBtn.addEventListener('click', newGrid);
-    rainbowBtn.addEventListener('click', useRainbowPen)
-    blackBtn.addEventListener('click', useBlackPen)
+    rainbowBtn.addEventListener('click', useRainbowPen);
+    blackBtn.addEventListener('click', useBlackPen);
+    brushBtn.addEventListener('click', useBrush);
+    resetBtn.addEventListener('click', resetGrid);
   }
 
 </script>
