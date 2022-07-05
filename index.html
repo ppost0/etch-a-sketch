@@ -11,10 +11,12 @@
   <div class="buttonsrow">
     <button class="btn changegridbtn">Change grid</button>
     <button class="btn blackbtn">Black Pen</button>
-    <button class="btn brushbtn" hidden>Soft Brush</button>
+    <button class="btn brushbtn">Soft Brush</button>
     <button class="btn rainbowbtn">Rainbow Pen</button>
     <button class="btn resetbtn">Reset</button>
   </div>
+
+  <div class="title">Etch A Sketch</div>
 
   <div class="gridcontainer"></div>
 
@@ -48,20 +50,24 @@
 
     function colorSquareBlack(event) {
       event.target.style.background='black';
+      Object.assign(event.target.style, {opacity: 1.0});
     }
 
     function colorWithBrush(event) {
       console.log(event)
-      let alpha = 0
-      event.target.style.background='rgba(0,0,0,' + alpha++ + ')'
+      let opacity = Number(event.target.style.opacity);
+      let newOpacity = opacity + 0.10;
+      event.target.style.background='black';
+      Object.assign(event.target.style, {opacity: newOpacity});
     }
-
 
 
     function colorSquareRainbow(event) {
       event.target.style.background=`rgb(${Math.floor(Math.random() * 255)},
-        ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+        ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+      Object.assign(event.target.style, {opacity: 1.0});
     }
+
 
 
 
@@ -94,6 +100,7 @@
       cells = document.querySelectorAll('.cell');
       cells.forEach(cell => {
         cell.removeEventListener('mouseover', colorSquareRainbow);
+        cell.removeEventListener('mouseover', colorWithBrush);
         cell.addEventListener('mouseover', colorSquareBlack);
       })
     }
@@ -103,6 +110,7 @@
       cells = document.querySelectorAll('.cell');
       cells.forEach(cell => {
         cell.removeEventListener('mouseover', colorSquareBlack);
+        cell.removeEventListener('mouseover', colorWithBrush);
         cell.addEventListener('mouseover', colorSquareRainbow);
       })
     }
@@ -121,7 +129,8 @@
     function resetGrid() {
       cells = document.querySelectorAll('.cell');
       cells.forEach(cell => {
-        cell.style.background='white';
+        cell.style.backgroundColor='white';
+        cell.style.opacity=0.0;
       })
     }
 
